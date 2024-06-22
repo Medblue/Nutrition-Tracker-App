@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
 
 class NutriWidget extends StatelessWidget {
+  
   final String mainText;
-  const NutriWidget({Key? key, required this.mainText}) : super(key: key);
+  final Function()? onTap;
+  
+  const NutriWidget(
+    {
+      super.key, 
+      required this.mainText,
+      required this.onTap,
+    }
+  );
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap: onTap,
       child: Container(
         width: 210, 
         height: 150, 

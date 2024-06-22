@@ -1,8 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:nutritrackerapp/calculator/all/all_ip.dart';
+import 'package:nutritrackerapp/calculator/intralipid/intralipid_ip.dart';
+import 'package:nutritrackerapp/calculator/aminoven/aminoven_ip.dart';
 import 'package:nutritrackerapp/components/nutrient_widget.dart';
 
 class CalculatorPage extends StatelessWidget {
-  const CalculatorPage({Key? key}) : super(key: key);
+  const CalculatorPage({super.key});
+
+  void allInput(BuildContext context){
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const AllCalcPage(),),);
+  }
+
+  void intralipidInput(BuildContext context){
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const IntralipidCalcPage(),),);
+  }
+
+  void aminoAcidInput(BuildContext context){
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const AminovenCalcPage(),),);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,24 +82,84 @@ class CalculatorPage extends StatelessWidget {
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 padding: const EdgeInsets.all(25.0),
-                children: const [
-                  NutriWidget(mainText: "All"),
-                  NutriWidget(mainText: "Intralipid"),
-                  NutriWidget(mainText: "Aminoven"),
-                  NutriWidget(mainText: "3% Saline"),
-                  NutriWidget(mainText: "NS"),
-                  NutriWidget(mainText: "KCl"),
-                  NutriWidget(mainText: "CaGlucon"),
-                  NutriWidget(mainText: "MVI"),
-                  NutriWidget(mainText: "DV"),
-                  NutriWidget(mainText: "D%"),
-                  NutriWidget(mainText: "D 10%"),
-                  NutriWidget(mainText: "D 25%"),
-                  NutriWidget(mainText: "PN vol/rate"),
-                  NutriWidget(mainText: "Feed 2hrly"),
+                children:  [
+                  NutriWidget(
+                    onTap: () => allInput(context),
+                    mainText: "All",
+                    ),
+
+                  NutriWidget(
+                    onTap: () => intralipidInput(context),
+                    mainText: "Intralipid"
+                    ),
+
+                  NutriWidget(
+                    onTap: () => aminoAcidInput(context),
+                    mainText: "Aminoven"
+                    ),
+
+                  NutriWidget(
+                    onTap: (){},
+                    mainText: "3% Saline"
+                    ),
+
+                  NutriWidget(
+                    onTap: (){},
+                    mainText: "NS"
+                    ),
+
+                  NutriWidget(
+                    onTap: (){},
+                    mainText: "KCl"
+                    ),
+
+                  NutriWidget(
+                    onTap: (){},
+                    mainText: "CaGlucon"
+                    ),
+
+                  NutriWidget(
+                    onTap: (){},
+                    mainText: "MVI"
+                    ),
+
+                  NutriWidget(
+                    onTap: (){},
+                    mainText: "DV"
+                    ), 
+
+                  NutriWidget(
+                    onTap: (){},
+                    mainText: "D%"
+                    ),
+
+                  NutriWidget(
+                    onTap: (){},
+                    mainText: "D 10%"
+                    ),
+
+                  NutriWidget(
+                    onTap: (){},
+                    mainText: "D 25%"
+                    ),
+
+                  NutriWidget(
+                    onTap: (){},
+                    mainText: "PN vol/rate"
+                    ),
+
+                  NutriWidget(
+                    onTap: (){},
+                    mainText: "Feed 2hrly"
+                    ),
+
                 ],
               ),
-             NutriWidget(mainText: "Calories"),
+             NutriWidget(
+              onTap: (){},
+              mainText: "Calories"
+              ),
+
              SizedBox(height:24),
             ],
           ),

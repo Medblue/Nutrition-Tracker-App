@@ -5,6 +5,7 @@ class UserTextfield extends StatelessWidget {
   final String hintText;
   final bool obscureText;
   final String? Function(String?)? validator;
+  final TextInputType keyboardType;
 
   const UserTextfield({
     Key? key,
@@ -12,6 +13,7 @@ class UserTextfield extends StatelessWidget {
     required this.hintText,
     required this.obscureText,
     this.validator,
+    this.keyboardType = TextInputType.text,
   }) : super(key: key);
 
   @override
@@ -21,6 +23,7 @@ class UserTextfield extends StatelessWidget {
       child: TextFormField(
         controller: controller,
         obscureText: obscureText,
+        keyboardType: keyboardType,
         decoration: InputDecoration(
           hintText: hintText,
           fillColor: Colors.white,

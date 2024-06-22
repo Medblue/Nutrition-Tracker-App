@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:nutritrackerapp/components/my_button.dart';
 import 'package:nutritrackerapp/components/add_user_textfield.dart';
-//import 'package:nutritrackerapp/pages/new_user_homepage.dart';
 import 'package:nutritrackerapp/pages/user_info_or_user_home_page.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class UserInfoPage extends StatefulWidget {
   const UserInfoPage({super.key});
@@ -43,20 +42,24 @@ class _UserInfoPageState extends State<UserInfoPage> {
   // Function for registering new user
   void newUserHome(BuildContext context) async {
     if (_formKey.currentState?.validate() ?? false) {
-      // Save data locally
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      await prefs.setString('babyName', babyNameController.text);
-      await prefs.setString('motherName', motherNameController.text);
-      await prefs.setString('dob', _dateController.text);
-      await prefs.setString('gender', genderController.text);
-      await prefs.setString('weight', weightController.text);
+      try {
+        var box = Hive.box('userBox');
+        print('Saving data to Hive: ${babyNameController.text}, ${motherNameController.text}, ${_dateController.text}, ${genderController.text}, ${weightController.text}');
+        await box.put('babyName', babyNameController.text);
+        await box.put('motherName', motherNameController.text);
+        await box.put('dob', _dateController.text);
+        await box.put('gender', genderController.text);
+        await box.put('weight', weightController.text);
 
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const UserHomepage(),
-        ),
-      );
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const UserHomepage(),
+          ),
+        );
+      } catch (e) {
+        print('Error saving data to Hive: $e');
+      }
     }
   }
 
