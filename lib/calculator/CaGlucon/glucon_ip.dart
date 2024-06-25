@@ -2,24 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:nutritrackerapp/components/my_button.dart';
 import 'package:nutritrackerapp/components/add_user_textfield.dart';
 
-class AminovenCalcPage extends StatefulWidget {
-  const AminovenCalcPage({super.key});
+class CaGluconCalcPage extends StatefulWidget {
+  const CaGluconCalcPage({super.key});
 
   @override
-  State<AminovenCalcPage> createState() => _AminovenCalcPageState();
+  State<CaGluconCalcPage> createState() => _CaGluconCalcPageState();
 }
 
-class _AminovenCalcPageState extends State<AminovenCalcPage> {
+class _CaGluconCalcPageState extends State<CaGluconCalcPage> {
   // Defining variables
   double weight = 0;
-  double aminoAcids = 0;
+  double Ca = 0;
   double ans = 0;
   double overfill = 0;
   double osmolality = 0;
 
   // Controllers for the patient info
   final weightController = TextEditingController();
-  final AAController = TextEditingController();
+  final CaController = TextEditingController();
 
   // Form key
   final _formKey = GlobalKey<FormState>();
@@ -27,7 +27,7 @@ class _AminovenCalcPageState extends State<AminovenCalcPage> {
   @override
   void dispose() {
     weightController.dispose();
-    AAController.dispose();
+    CaController.dispose();
     super.dispose();
   }
 
@@ -35,10 +35,10 @@ class _AminovenCalcPageState extends State<AminovenCalcPage> {
   void calcAns() {
     setState(() {
       weight = double.parse(weightController.text);
-      aminoAcids = double.parse(AAController.text);
-      ans = ((aminoAcids * (weight / 1000)) * 10);
+      Ca = double.parse(CaController.text);
+      ans = (Ca * (weight / 1000));
       overfill = (ans * 1.2);
-      osmolality = (overfill * 1);
+      osmolality = (overfill * 0.68);
 
       // Round ans and overfill to two decimal places
       ans = double.parse(ans.toStringAsFixed(2));
@@ -76,7 +76,7 @@ class _AminovenCalcPageState extends State<AminovenCalcPage> {
             children: [
               // Custom AppBar-like section
               Container(
-                padding: const EdgeInsets.only(left: 10, top: 26, right: 140),
+                padding: const EdgeInsets.only(left: 10, top: 26, right: 160),
                 height: 68, // Account for padding
                 decoration: const BoxDecoration(
                   border: Border(
@@ -98,7 +98,7 @@ class _AminovenCalcPageState extends State<AminovenCalcPage> {
                     const Align(
                       alignment: Alignment.center,
                       child: Text(
-                        'Aminoven Calculator',
+                        'CaGlucon Calculator',
                         style: TextStyle(
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w600,
@@ -254,13 +254,13 @@ class _AminovenCalcPageState extends State<AminovenCalcPage> {
                     ),
                     const SizedBox(height: 20),
                     UserTextfield(
-                      controller: AAController,
+                      controller: CaController,
                       keyboardType: TextInputType.number,
-                      hintText: "A.A.",
+                      hintText: "Ca",
                       obscureText: false,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return "Please enter Amino Acids";
+                          return "Please enter Calcium";
                         }
                         return null;
                       },

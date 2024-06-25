@@ -12,7 +12,10 @@ class IntralipidCalcPage extends StatefulWidget {
 class _IntralipidCalcPageState extends State<IntralipidCalcPage> {
 
   //defining variables 
-  double weight = 0; double lipid = 0; double ans = 0; double overfill = 0;
+  double weight = 0; 
+  double lipid = 0; 
+  double ans = 0; 
+  double overfill = 0;
   
   // Controllers for the patient info
   final weightController = TextEditingController();
@@ -20,6 +23,13 @@ class _IntralipidCalcPageState extends State<IntralipidCalcPage> {
 
   // Form key
   final _formKey = GlobalKey<FormState>(); 
+
+  @override
+  void dispose(){
+    weightController.dispose();
+    lipidController.dispose();
+    super.dispose();
+  }
 
   //function for calculating intralipid
   void calcAns(){
@@ -43,6 +53,7 @@ class _IntralipidCalcPageState extends State<IntralipidCalcPage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final containerWidth = (size.width - 100) / 2;
     return Scaffold(
       body: Container(
         width: size.width,
@@ -97,27 +108,95 @@ class _IntralipidCalcPageState extends State<IntralipidCalcPage> {
                   ],
                 ),
               ),
-              const SizedBox(height: 250),
+              SizedBox(height: 180),
+               Padding(
+                padding: const EdgeInsets.fromLTRB(8.0, 10.0, 8.0, 4.0),
+                  child: Container(
+                    height: 130, // Adjust height as needed
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+       
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Text(
+                            'Actual',
+                            style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            ),
+                          ),
+
+            SizedBox(height: 5),
+             
+            Container(
+              height: 80, 
+              width: containerWidth, 
+              decoration: BoxDecoration(
+                color: Colors.green,
+                borderRadius: BorderRadius.circular(35),
+              ),
+              child: Center(
+                child: Text(
+                  '$ans',
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+
+       
+        SizedBox(width: 10),
+
+        
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const Text(
+              'Overfill',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+              ),
+            ),
+
+            SizedBox(height: 5), 
+
+            Container(
+              height: 80, 
+              width: containerWidth, 
+              decoration: BoxDecoration(
+                color: Colors.green,
+                borderRadius: BorderRadius.circular(35),
+              ),
+              child: Center(
+                child: Text(
+                  '$overfill',
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+        SizedBox(width: 10),
+      ],
+    ),
+  ),
+),
+
               Form(
                 key: _formKey,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-
-                    Text(
-                      "Actual: $ans",
-                      style: const TextStyle(fontSize: 25.0, color: Colors.white, fontWeight: FontWeight.bold),
-                      ),
-
-                      const SizedBox(height: 10),
-
-                    Text(
-                      "Overfill: $overfill ml/hr",
-                      style: const TextStyle(fontSize: 25.0, color: Colors.white, fontWeight: FontWeight.bold),
-                      ),
-
-                      const SizedBox(height: 20),
-
                     UserTextfield(
                       controller: weightController,
                       keyboardType: TextInputType.number,

@@ -2,24 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:nutritrackerapp/components/my_button.dart';
 import 'package:nutritrackerapp/components/add_user_textfield.dart';
 
-class AminovenCalcPage extends StatefulWidget {
-  const AminovenCalcPage({super.key});
+class SalineCalcPage extends StatefulWidget {
+  const SalineCalcPage({super.key});
 
   @override
-  State<AminovenCalcPage> createState() => _AminovenCalcPageState();
+  State<SalineCalcPage> createState() => _SalineCalcPageState();
 }
 
-class _AminovenCalcPageState extends State<AminovenCalcPage> {
+class _SalineCalcPageState extends State<SalineCalcPage> {
   // Defining variables
   double weight = 0;
-  double aminoAcids = 0;
+  double Na3 = 0;
   double ans = 0;
   double overfill = 0;
   double osmolality = 0;
 
   // Controllers for the patient info
   final weightController = TextEditingController();
-  final AAController = TextEditingController();
+  final Na3Controller = TextEditingController();
 
   // Form key
   final _formKey = GlobalKey<FormState>();
@@ -27,7 +27,7 @@ class _AminovenCalcPageState extends State<AminovenCalcPage> {
   @override
   void dispose() {
     weightController.dispose();
-    AAController.dispose();
+    Na3Controller.dispose();
     super.dispose();
   }
 
@@ -35,8 +35,8 @@ class _AminovenCalcPageState extends State<AminovenCalcPage> {
   void calcAns() {
     setState(() {
       weight = double.parse(weightController.text);
-      aminoAcids = double.parse(AAController.text);
-      ans = ((aminoAcids * (weight / 1000)) * 10);
+      Na3 = double.parse(Na3Controller.text);
+      ans = ((Na3 * (weight / 1000)) * 2);
       overfill = (ans * 1.2);
       osmolality = (overfill * 1);
 
@@ -98,7 +98,7 @@ class _AminovenCalcPageState extends State<AminovenCalcPage> {
                     const Align(
                       alignment: Alignment.center,
                       child: Text(
-                        'Aminoven Calculator',
+                        '3% Saline Calculator',
                         style: TextStyle(
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w600,
@@ -254,13 +254,13 @@ class _AminovenCalcPageState extends State<AminovenCalcPage> {
                     ),
                     const SizedBox(height: 20),
                     UserTextfield(
-                      controller: AAController,
+                      controller: Na3Controller,
                       keyboardType: TextInputType.number,
-                      hintText: "A.A.",
+                      hintText: "Na(3%)",
                       obscureText: false,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return "Please enter Amino Acids";
+                          return "Please enter Sodium (3%)";
                         }
                         return null;
                       },

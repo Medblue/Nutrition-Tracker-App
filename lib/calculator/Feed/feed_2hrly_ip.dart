@@ -2,24 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:nutritrackerapp/components/my_button.dart';
 import 'package:nutritrackerapp/components/add_user_textfield.dart';
 
-class AminovenCalcPage extends StatefulWidget {
-  const AminovenCalcPage({super.key});
+class FeedCalcPage extends StatefulWidget {
+  const FeedCalcPage({super.key});
 
   @override
-  State<AminovenCalcPage> createState() => _AminovenCalcPageState();
+  State<FeedCalcPage> createState() => _FeedCalcPageState();
 }
 
-class _AminovenCalcPageState extends State<AminovenCalcPage> {
+class _FeedCalcPageState extends State<FeedCalcPage> {
   // Defining variables
   double weight = 0;
-  double aminoAcids = 0;
-  double ans = 0;
+  double feed = 0;
+  double pn = 0;
+  double ans = 0; 
   double overfill = 0;
   double osmolality = 0;
 
   // Controllers for the patient info
   final weightController = TextEditingController();
-  final AAController = TextEditingController();
+  final feedController = TextEditingController();
+  final pnController = TextEditingController();
 
   // Form key
   final _formKey = GlobalKey<FormState>();
@@ -27,7 +29,8 @@ class _AminovenCalcPageState extends State<AminovenCalcPage> {
   @override
   void dispose() {
     weightController.dispose();
-    AAController.dispose();
+    feedController.dispose();
+    pnController.dispose();
     super.dispose();
   }
 
@@ -35,15 +38,13 @@ class _AminovenCalcPageState extends State<AminovenCalcPage> {
   void calcAns() {
     setState(() {
       weight = double.parse(weightController.text);
-      aminoAcids = double.parse(AAController.text);
-      ans = ((aminoAcids * (weight / 1000)) * 10);
-      overfill = (ans * 1.2);
-      osmolality = (overfill * 1);
+      feed = double.parse(feedController.text);
+      ans = ((feed * (weight / 1000)) / 12);
+      overfill = (pn / 24);
 
       // Round ans and overfill to two decimal places
       ans = double.parse(ans.toStringAsFixed(2));
       overfill = double.parse(overfill.toStringAsFixed(2));
-      osmolality = double.parse(osmolality.toStringAsFixed(2));
     });
   }
 
@@ -76,7 +77,7 @@ class _AminovenCalcPageState extends State<AminovenCalcPage> {
             children: [
               // Custom AppBar-like section
               Container(
-                padding: const EdgeInsets.only(left: 10, top: 26, right: 140),
+                padding: const EdgeInsets.only(left: 10, top: 26, right: 160),
                 height: 68, // Account for padding
                 decoration: const BoxDecoration(
                   border: Border(
@@ -98,7 +99,7 @@ class _AminovenCalcPageState extends State<AminovenCalcPage> {
                     const Align(
                       alignment: Alignment.center,
                       child: Text(
-                        'Aminoven Calculator',
+                        'Feed Calculator',
                         style: TextStyle(
                           fontFamily: 'Inter',
                           fontWeight: FontWeight.w600,
@@ -115,7 +116,7 @@ class _AminovenCalcPageState extends State<AminovenCalcPage> {
               const SizedBox(height: 180),
 
               Padding(
-                padding: const EdgeInsets.fromLTRB(8.0, 10.0, 8.0, 4.0),
+                padding: const EdgeInsets.fromLTRB(35.0, 10.0, 8.0, 4.0),
                   child: Container(
                     height: 130, // Adjust height as needed
                       child: Row(
@@ -191,43 +192,7 @@ class _AminovenCalcPageState extends State<AminovenCalcPage> {
             ),
           ],
         ),
-
-        
         SizedBox(width: 10),
-
-        
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Text(
-              'Osmolality',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-              ),
-            ),
-
-            SizedBox(height: 5), 
-
-            Container(
-              height: 80, 
-              width: containerWidth, 
-              decoration: BoxDecoration(
-                color: Colors.green,
-                borderRadius: BorderRadius.circular(35),
-              ),
-              child: Center(
-                child: Text(
-                  '$osmolality',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
       ],
     ),
   ),
@@ -254,13 +219,26 @@ class _AminovenCalcPageState extends State<AminovenCalcPage> {
                     ),
                     const SizedBox(height: 20),
                     UserTextfield(
-                      controller: AAController,
+                      controller: feedController,
                       keyboardType: TextInputType.number,
-                      hintText: "A.A.",
+                      hintText: "Feed",
                       obscureText: false,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return "Please enter Amino Acids";
+                          return "Please enter Feed";
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(height: 20),
+                    UserTextfield(
+                      controller: pnController,
+                      keyboardType: TextInputType.number,
+                      hintText: "PN vol/rate",
+                      obscureText: false,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "Please enter PN";
                         }
                         return null;
                       },

@@ -1,22 +1,79 @@
 import 'package:flutter/material.dart';
+import 'package:nutritrackerapp/calculator/CaGlucon/glucon_ip.dart';
+import 'package:nutritrackerapp/calculator/Feed/feed_2hrly_ip.dart';
+import 'package:nutritrackerapp/calculator/KCl/kcl_ip.dart';
+import 'package:nutritrackerapp/calculator/MVI/mvi_ip.dart';
+import 'package:nutritrackerapp/calculator/NS/ns_ip.dart';
+import 'package:nutritrackerapp/calculator/Saline/saline_ip.dart';
 import 'package:nutritrackerapp/calculator/all/all_ip.dart';
 import 'package:nutritrackerapp/calculator/intralipid/intralipid_ip.dart';
 import 'package:nutritrackerapp/calculator/aminoven/aminoven_ip.dart';
 import 'package:nutritrackerapp/components/nutrient_widget.dart';
 
 class CalculatorPage extends StatelessWidget {
-  const CalculatorPage({super.key});
+  const CalculatorPage({Key? key});
 
-  void allInput(BuildContext context){
-    Navigator.push(context, MaterialPageRoute(builder: (context) => const AllCalcPage(),),);
+  void allInput(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const AllCalcPage()),
+    );
   }
 
-  void intralipidInput(BuildContext context){
-    Navigator.push(context, MaterialPageRoute(builder: (context) => const IntralipidCalcPage(),),);
+  void intralipidInput(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const IntralipidCalcPage()),
+    );
   }
 
-  void aminoAcidInput(BuildContext context){
-    Navigator.push(context, MaterialPageRoute(builder: (context) => const AminovenCalcPage(),),);
+  void aminoAcidInput(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const AminovenCalcPage()),
+    );
+  }
+
+  void Na3Input(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const SalineCalcPage()),
+    );
+  }
+
+  void NaNSInput(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const NSCalcPage()),
+    );
+  }
+
+  void KInput(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const KClCalcPage()),
+    );
+  }
+
+  void CaInput(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const CaGluconCalcPage()),
+    );
+  }
+
+  void MVIInput(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const MVICalcPage()),
+    );
+  }
+
+  void FeedInput(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const FeedCalcPage()),
+    );
   }
 
   @override
@@ -76,91 +133,76 @@ class CalculatorPage extends StatelessWidget {
               const SizedBox(height: 20),
               GridView.count(
                 crossAxisCount: 2,
-                crossAxisSpacing: 24, 
+                crossAxisSpacing: 24,
                 mainAxisSpacing: 24,
                 childAspectRatio: 1.2,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 padding: const EdgeInsets.all(25.0),
-                children:  [
+                children: [
                   NutriWidget(
                     onTap: () => allInput(context),
                     mainText: "All",
-                    ),
-
+                  ),
                   NutriWidget(
                     onTap: () => intralipidInput(context),
-                    mainText: "Intralipid"
-                    ),
-
+                    mainText: "Intralipid",
+                  ),
                   NutriWidget(
                     onTap: () => aminoAcidInput(context),
-                    mainText: "Aminoven"
-                    ),
-
+                    mainText: "Aminoven",
+                  ),
                   NutriWidget(
-                    onTap: (){},
-                    mainText: "3% Saline"
-                    ),
-
+                    onTap: () => Na3Input(context),
+                    mainText: "3% Saline",
+                  ),
                   NutriWidget(
-                    onTap: (){},
-                    mainText: "NS"
-                    ),
-
+                    onTap: () => NaNSInput(context),
+                    mainText: "NS",
+                  ),
                   NutriWidget(
-                    onTap: (){},
-                    mainText: "KCl"
-                    ),
-
+                    onTap: () => KInput(context),
+                    mainText: "KCl",
+                  ),
                   NutriWidget(
-                    onTap: (){},
-                    mainText: "CaGlucon"
-                    ),
-
+                    onTap: () => CaInput(context),
+                    mainText: "CaGlucon",
+                  ),
                   NutriWidget(
-                    onTap: (){},
-                    mainText: "MVI"
-                    ),
-
+                    onTap: () => MVIInput(context),
+                    mainText: "MVI",
+                  ),
                   NutriWidget(
-                    onTap: (){},
-                    mainText: "DV"
-                    ), 
-
+                    onTap: () {},
+                    mainText: "DV",
+                  ),
                   NutriWidget(
-                    onTap: (){},
-                    mainText: "D%"
-                    ),
-
+                    onTap: () {},
+                    mainText: "D%",
+                  ),
                   NutriWidget(
-                    onTap: (){},
-                    mainText: "D 10%"
-                    ),
-
+                    onTap: () {},
+                    mainText: "D 10%",
+                  ),
                   NutriWidget(
-                    onTap: (){},
-                    mainText: "D 25%"
-                    ),
-
+                    onTap: () {},
+                    mainText: "D 25%",
+                  ),
                   NutriWidget(
-                    onTap: (){},
-                    mainText: "PN vol/rate"
-                    ),
-
+                    onTap: () {},
+                    mainText: "PN vol/rate",
+                  ),
                   NutriWidget(
-                    onTap: (){},
-                    mainText: "Feed 2hrly"
-                    ),
-
+                    onTap: () => FeedInput(context),
+                    mainText: "Feed 2hrly",
+                  ),
                 ],
               ),
-             NutriWidget(
-              onTap: (){},
-              mainText: "Calories"
+              NutriWidget(
+                onTap: () {},
+                mainText: "Calories",
               ),
-
-             SizedBox(height:24),
+              SizedBox(height: 24),
             ],
           ),
         ),
