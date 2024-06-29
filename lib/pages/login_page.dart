@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:nutritrackerapp/components/SquareTile.dart';
 import 'package:nutritrackerapp/components/my_button.dart';
 import 'package:nutritrackerapp/components/my_textfield.dart';
+import 'package:nutritrackerapp/pages/forgot_pw_page.dart';
 import 'package:nutritrackerapp/services/auth_services.dart';
 //import 'package:nutritrackerapp/pages/home_page.dart';
 //import 'package:cloud_firestore/cloud_firestore.dart';
@@ -130,10 +131,20 @@ void showErrorMessage(String message){
             
                 SizedBox(height: 20),
             
-                Text(
+                GestureDetector(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context){
+                       return ForgotPasswordPage(); 
+                  },
+                    ),
+                    );
+                  },
+                  child: Text(
                   "Forgot Password?",
                    style: TextStyle(color: Colors.grey[400]),
                 ),
+                ),
+                
             
                 SizedBox(height: 50),
             

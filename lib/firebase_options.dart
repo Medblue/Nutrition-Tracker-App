@@ -46,6 +46,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '1015485509659',
     projectId: 'nutritrackerapp-c908b',
     authDomain: 'nutritrackerapp-c908b.firebaseapp.com',
+    databaseURL: 'https://nutritrackerapp-c908b-default-rtdb.firebaseio.com',
     storageBucket: 'nutritrackerapp-c908b.appspot.com',
     measurementId: 'G-C35Z87BKN9',
   );
@@ -55,6 +56,7 @@ class DefaultFirebaseOptions {
     appId: '1:1015485509659:android:58247503b595de58db08be',
     messagingSenderId: '1015485509659',
     projectId: 'nutritrackerapp-c908b',
+    databaseURL: 'https://nutritrackerapp-c908b-default-rtdb.firebaseio.com',
     storageBucket: 'nutritrackerapp-c908b.appspot.com',
   );
 
@@ -63,7 +65,10 @@ class DefaultFirebaseOptions {
     appId: '1:1015485509659:ios:0a6f0860897c3c04db08be',
     messagingSenderId: '1015485509659',
     projectId: 'nutritrackerapp-c908b',
+    databaseURL: 'https://nutritrackerapp-c908b-default-rtdb.firebaseio.com',
     storageBucket: 'nutritrackerapp-c908b.appspot.com',
+    androidClientId: '1015485509659-7753f8o6j0qebu847f06unuabqf3qaat.apps.googleusercontent.com',
+    iosClientId: '1015485509659-n4snrvrp3vkr71jmcci2cuvonp830ikq.apps.googleusercontent.com',
     iosBundleId: 'com.example.nutritrackerapp',
   );
 
@@ -72,7 +77,10 @@ class DefaultFirebaseOptions {
     appId: '1:1015485509659:ios:0a6f0860897c3c04db08be',
     messagingSenderId: '1015485509659',
     projectId: 'nutritrackerapp-c908b',
+    databaseURL: 'https://nutritrackerapp-c908b-default-rtdb.firebaseio.com',
     storageBucket: 'nutritrackerapp-c908b.appspot.com',
+    androidClientId: '1015485509659-7753f8o6j0qebu847f06unuabqf3qaat.apps.googleusercontent.com',
+    iosClientId: '1015485509659-n4snrvrp3vkr71jmcci2cuvonp830ikq.apps.googleusercontent.com',
     iosBundleId: 'com.example.nutritrackerapp',
   );
 
@@ -82,7 +90,9 @@ class DefaultFirebaseOptions {
     messagingSenderId: '1015485509659',
     projectId: 'nutritrackerapp-c908b',
     authDomain: 'nutritrackerapp-c908b.firebaseapp.com',
+    databaseURL: 'https://nutritrackerapp-c908b-default-rtdb.firebaseio.com',
     storageBucket: 'nutritrackerapp-c908b.appspot.com',
     measurementId: 'G-TH9SJCPJN4',
   );
+
 }

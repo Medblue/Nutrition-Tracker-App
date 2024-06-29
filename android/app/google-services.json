@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1015485509659:android:58247503b595de58db08be",
+        "mobilesdk_app_id": "1:1015485509659:android:c953e5f80ad3bcebdb08be",
         "android_client_info": {
-          "package_name": "com.nutritracker.app"
+          "package_name": "com.example.nutritrackerapp"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "1015485509659-7753f8o6j0qebu847f06unuabqf3qaat.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.nutritracker.app",
+            "package_name": "com.example.nutritrackerapp",
             "certificate_hash": "e8a28aac0c8962fe14adc24fbe8bd6a4456a8bbf"
           }
         },
@@ -43,7 +43,43 @@
               "client_id": "1015485509659-n4snrvrp3vkr71jmcci2cuvonp830ikq.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.nutritracker.app"
+                "bundle_id": "com.example.nutritrackerapp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1015485509659:android:58247503b595de58db08be",
+        "android_client_info": {
+          "package_name": "com.nutritracker.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1015485509659-bo6pt5oi8l5v3kn66c5mqur8oi80355r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDciyszWLgsmU0TP7XXoAHgxUThRUumeEA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1015485509659-4pttohhftk8j0osjccajfjbk52bs15s1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1015485509659-n4snrvrp3vkr71jmcci2cuvonp830ikq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.nutritrackerapp"
               }
             }
           ]
