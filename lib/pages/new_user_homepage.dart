@@ -25,7 +25,7 @@ class NewUserHomepage extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                padding: const EdgeInsets.only(left: 10, top: 26, right: 10),
+                padding: const EdgeInsets.only(left: 180, top: 26, right: 10),
                 height: 68,
                 decoration: const BoxDecoration(
                   border: Border(
@@ -35,15 +35,10 @@ class NewUserHomepage extends StatelessWidget {
                     ),
                   ),
                 ),
-                child: Row(
+                child: const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    IconButton(
-                      icon: const Icon(Icons.arrow_back, color: Colors.black),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                    ),
+                    
                     const Text(
                       'Patient Info',
                       style: TextStyle(

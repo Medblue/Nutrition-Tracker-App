@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
+import 'package:nutritrackerapp/objectbox.dart';
 import 'package:nutritrackerapp/components/my_button.dart';
 import 'package:nutritrackerapp/components/add_user_textfield.dart';
 import 'package:nutritrackerapp/pages/user_info_or_user_home_page.dart';
+import 'package:nutritrackerapp/models/entities.dart';
 
 class UserInfoPage extends StatefulWidget {
   const UserInfoPage({super.key});
@@ -12,6 +13,20 @@ class UserInfoPage extends StatefulWidget {
 }
 
 class _UserInfoPageState extends State<UserInfoPage> {
+   List<User> users = []; // Store retrieved users
+
+  @override
+  void initState() {
+    super.initState();
+    _getUsers(); // Fetch users on initialization
+  }
+
+  Future<void> _getUsers() async {
+    final userBox = objectbox.store.box<User>();
+    users = await userBox.getAll(); // Retrieve all users
+    setState(() {}); // Update UI to reflect changes
+  }
+  
   // Controllers for the patient info
   final babyNameController = TextEditingController();
   final motherNameController = TextEditingController();
@@ -41,27 +56,37 @@ class _UserInfoPageState extends State<UserInfoPage> {
 
   // Function for registering new user
   void newUserHome(BuildContext context) async {
-    if (_formKey.currentState?.validate() ?? false) {
-      try {
-        var box = Hive.box('userBox');
-        print('Saving data to Hive: ${babyNameController.text}, ${motherNameController.text}, ${_dateController.text}, ${genderController.text}, ${weightController.text}');
-        await box.put('babyName', babyNameController.text);
-        await box.put('motherName', motherNameController.text);
-        await box.put('dob', _dateController.text);
-        await box.put('gender', genderController.text);
-        await box.put('weight', weightController.text);
+  if (_formKey.currentState?.validate() ?? false) {
+    try {
+      final user = User(
+        babyName: babyNameController.text,
+        motherName: motherNameController.text,
+        dob: _dateController.text,
+        gender: genderController.text,
+        weight: weightController.text,
+      );
 
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const UserHomepage(),
-          ),
-        );
-      } catch (e) {
-        print('Error saving data to Hive: $e');
-      }
+      // Use the ObjectBox store to put the user object
+      final userBox = objectbox.store.box<User>();
+       userBox.put(user); // Use async/await for proper error handling
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const UserHomepage(),
+        ),
+      );
+    } catch (e) {
+      // Display a user-friendly error message
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error saving data: ${e.toString()}'),
+          backgroundColor: Colors.red,
+        ),
+      );
     }
   }
+}
 
   @override
   Widget build(BuildContext context) {

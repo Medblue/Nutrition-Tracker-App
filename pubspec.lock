@@ -5,10 +5,10 @@ packages:
     dependency: transitive
     description:
       name: _fe_analyzer_shared
-      sha256: "0b2f2bd91ba804e53a61d757b986f89f1f9eaed5b11e4b2f5a2468d86d6c9fc7"
+      sha256: ae92f5d747aee634b87f89d9946000c2de774be1d6ac3e58268224348cd0101a
       url: "https://pub.dev"
     source: hosted
-    version: "67.0.0"
+    version: "61.0.0"
   _flutterfire_internals:
     dependency: transitive
     description:
@@ -21,10 +21,10 @@ packages:
     dependency: transitive
     description:
       name: analyzer
-      sha256: "37577842a27e4338429a1cbc32679d508836510b056f1eedf0c8d20e39c1383d"
+      sha256: ea3d8652bda62982addfd92fdc2d0214e5f82e43325104990d4f4c4a2a313562
       url: "https://pub.dev"
     source: hosted
-    version: "6.4.1"
+    version: "5.13.0"
   archive:
     dependency: transitive
     description:
@@ -209,6 +209,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.3"
+  cryptography:
+    dependency: transitive
+    description:
+      name: cryptography
+      sha256: d146b76d33d94548cf035233fbc2f4338c1242fa119013bead807d033fc4ae05
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.7.0"
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -221,10 +229,10 @@ packages:
     dependency: transitive
     description:
       name: dart_style
-      sha256: "99e066ce75c89d6b29903d788a7bb9369cf754f7b24bf70bf4b6d6d6b26853b9"
+      sha256: "1efa911ca7086affd35f463ca2fc1799584fb6aa89883cf0af8e3664d6a02d55"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.6"
+    version: "2.3.2"
   fake_async:
     dependency: transitive
     description:
@@ -345,6 +353,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
+  flat_buffers:
+    dependency: transitive
+    description:
+      name: flat_buffers
+      sha256: "380bdcba5664a718bfd4ea20a45d39e13684f5318fcd8883066a55e21f37f4c3"
+      url: "https://pub.dev"
+    source: hosted
+    version: "23.5.26"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -456,30 +472,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.1"
-  hive:
-    dependency: "direct main"
-    description:
-      name: hive
-      sha256: "8dcf6db979d7933da8217edcec84e9df1bdb4e4edc7fc77dbd5aa74356d6d941"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.2.3"
-  hive_flutter:
-    dependency: "direct main"
-    description:
-      name: hive_flutter
-      sha256: dca1da446b1d808a51689fb5d0c6c9510c0a2ba01e22805d492c73b68e33eecc
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.0"
-  hive_generator:
-    dependency: "direct dev"
-    description:
-      name: hive_generator
-      sha256: "06cb8f58ace74de61f63500564931f9505368f45f98958bd7a6c35ba24159db4"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.1"
   http:
     dependency: transitive
     description:
@@ -524,10 +516,10 @@ packages:
     dependency: transitive
     description:
       name: js
-      sha256: c1b2e9b5ea78c45e1a0788d29606ba27dc5f71f019f32ca5140f61ef071838cf
+      sha256: f2c445dce49627136094980615a031419f7f3eb393237e4ecd97ac15dea343f3
       url: "https://pub.dev"
     source: hosted
-    version: "0.7.1"
+    version: "0.6.7"
   json_annotation:
     dependency: transitive
     description:
@@ -608,6 +600,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
+  objectbox:
+    dependency: "direct main"
+    description:
+      name: objectbox
+      sha256: "70ff2a7538f6f8bb56136734d574f5bdc1cf29c50cd7207a14ea0c641ecb88ca"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.1"
+  objectbox_flutter_libs:
+    dependency: "direct main"
+    description:
+      name: objectbox_flutter_libs
+      sha256: "97adc5f95d16f33c7114d56e5dec617db4300cd11ae5022134cf76fa5f30084d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.1"
+  objectbox_generator:
+    dependency: "direct dev"
+    description:
+      name: objectbox_generator
+      sha256: "29d9295aac0a74ce44cd00afa011e0e22404e5c8f66e37587f84e3ef4b6bee52"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.0.1"
   package_config:
     dependency: transitive
     description:
@@ -617,7 +633,7 @@ packages:
     source: hosted
     version: "2.1.0"
   path:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: path
       sha256: "087ce49c3f0dc39180befefc60fdb4acd8f8620e5682fe2476afd0b3688bb4af"
@@ -805,14 +821,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.0"
-  source_helper:
-    dependency: transitive
-    description:
-      name: source_helper
-      sha256: "6adebc0006c37dd63fe05bca0a929b99f06402fc95aa35bf36d67f5c06de01fd"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.3.4"
   source_span:
     dependency: transitive
     description:
