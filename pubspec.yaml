@@ -46,6 +46,8 @@ dependencies:
   objectbox: ^4.0.1
   objectbox_flutter_libs: any
   path: ^1.9.0
+  community_charts_flutter: ^1.0.4
+  
 
 dev_dependencies:
   flutter_test:
