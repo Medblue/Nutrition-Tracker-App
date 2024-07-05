@@ -16,7 +16,7 @@ class CalculatorPage extends StatelessWidget {
   void allInput(BuildContext context) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => const AllCalcPage()),
+      MaterialPageRoute(builder: (context) => const AllCalcIpPage()),
     );
   }
 

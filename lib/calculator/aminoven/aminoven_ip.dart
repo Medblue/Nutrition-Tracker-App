@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:nutritrackerapp/components/my_button.dart';
 import 'package:nutritrackerapp/components/add_user_textfield.dart';
+import 'package:nutritrackerapp/models/entities.dart';
+import 'package:nutritrackerapp/objectbox.dart';
+//import 'package:objectbox/objectbox.dart';
 
 class AminovenCalcPage extends StatefulWidget {
   const AminovenCalcPage({super.key});
@@ -10,6 +13,20 @@ class AminovenCalcPage extends StatefulWidget {
 }
 
 class _AminovenCalcPageState extends State<AminovenCalcPage> {
+  List<WeightEntry> storedWeight = []; // Store retrieved weights
+
+  @override
+  void initState() {
+    super.initState();
+    _getWeight(); // Fetch weights on initialization
+  }
+
+  Future<void> _getWeight() async {
+    final weightBox = objectbox.store.box<WeightEntry>();
+    storedWeight = weightBox.getAll(); // Retrieve all weights
+    setState(() {}); // Update UI to reflect changes
+  }
+
   // Defining variables
   double weight = 0;
   double aminoAcids = 0;
@@ -20,9 +37,7 @@ class _AminovenCalcPageState extends State<AminovenCalcPage> {
   // Controllers for the patient info
   final weightController = TextEditingController();
   final AAController = TextEditingController();
-
-  // Form key
-  final _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>(); // Form key
 
   @override
   void dispose() {
@@ -33,23 +48,36 @@ class _AminovenCalcPageState extends State<AminovenCalcPage> {
 
   // Function for calculating aminoven
   void calcAns() {
-    setState(() {
-      weight = double.parse(weightController.text);
-      aminoAcids = double.parse(AAController.text);
-      ans = ((aminoAcids * (weight / 1000)) * 10);
-      overfill = (ans * 1.2);
-      osmolality = (overfill * 1);
+  setState(() {
+    weight = double.parse(weightController.text);
+    aminoAcids = double.parse(AAController.text);
+    ans = ((aminoAcids * (weight / 1000)) * 10);
+    overfill = (ans * 1.2);
+    osmolality = (overfill * 1);
 
-      // Round ans and overfill to two decimal places
-      ans = double.parse(ans.toStringAsFixed(2));
-      overfill = double.parse(overfill.toStringAsFixed(2));
-      osmolality = double.parse(osmolality.toStringAsFixed(2));
-    });
-  }
+    ans = double.parse(ans.toStringAsFixed(2));
+    overfill = double.parse(overfill.toStringAsFixed(2));
+    osmolality = double.parse(osmolality.toStringAsFixed(2));
+
+    // Store the weight entry
+    final weightEntry = WeightEntry(weight: weight);
+    final weightBox = objectbox.store.box<WeightEntry>();
+    weightBox.put(weightEntry);
+
+    // Update storedWeight list after storing
+    _getWeight();
+
+    // Log to verify storage
+    print('Weight saved to ObjectBox: $weightEntry');
+  });
+}
+
 
   // onTap function to calculate
   void calculate(BuildContext context) {
-    calcAns();
+    if (_formKey.currentState!.validate()) {
+      calcAns();
+    }
   }
 
   @override
@@ -111,129 +139,110 @@ class _AminovenCalcPageState extends State<AminovenCalcPage> {
                   ],
                 ),
               ),
-
               const SizedBox(height: 180),
-
               Padding(
                 padding: const EdgeInsets.fromLTRB(8.0, 10.0, 8.0, 4.0),
-                  child: Container(
-                    height: 130, // Adjust height as needed
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-       
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
+                child: Container(
+                  height: 130, // Adjust height as needed
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           const Text(
                             'Actual',
                             style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
+                              color: Colors.white,
+                              fontSize: 16,
                             ),
                           ),
-
-            SizedBox(height: 5),
-             
-            Container(
-              height: 80, 
-              width: containerWidth, 
-              decoration: BoxDecoration(
-                color: Colors.green,
-                borderRadius: BorderRadius.circular(35),
-              ),
-              child: Center(
-                child: Text(
-                  '$ans',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
+                          SizedBox(height: 5),
+                          Container(
+                            height: 80,
+                            width: containerWidth,
+                            decoration: BoxDecoration(
+                              color: Colors.green,
+                              borderRadius: BorderRadius.circular(35),
+                            ),
+                            child: Center(
+                              child: Text(
+                                '$ans',
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(width: 10),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Text(
+                            'Overfill',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                            ),
+                          ),
+                          SizedBox(height: 5),
+                          Container(
+                            height: 80,
+                            width: containerWidth,
+                            decoration: BoxDecoration(
+                              color: Colors.green,
+                              borderRadius: BorderRadius.circular(35),
+                            ),
+                            child: Center(
+                              child: Text(
+                                '$overfill',
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(width: 10),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Text(
+                            'Osmolality',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                            ),
+                          ),
+                          SizedBox(height: 5),
+                          Container(
+                            height: 80,
+                            width: containerWidth,
+                            decoration: BoxDecoration(
+                              color: Colors.green,
+                              borderRadius: BorderRadius.circular(35),
+                            ),
+                            child: Center(
+                              child: Text(
+                                '$osmolality',
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ),
-            ),
-          ],
-        ),
-
-       
-        SizedBox(width: 10),
-
-        
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Text(
-              'Overfill',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-              ),
-            ),
-
-            SizedBox(height: 5), 
-
-            Container(
-              height: 80, 
-              width: containerWidth, 
-              decoration: BoxDecoration(
-                color: Colors.green,
-                borderRadius: BorderRadius.circular(35),
-              ),
-              child: Center(
-                child: Text(
-                  '$overfill',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-
-        
-        SizedBox(width: 10),
-
-        
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Text(
-              'Osmolality',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-              ),
-            ),
-
-            SizedBox(height: 5), 
-
-            Container(
-              height: 80, 
-              width: containerWidth, 
-              decoration: BoxDecoration(
-                color: Colors.green,
-                borderRadius: BorderRadius.circular(35),
-              ),
-              child: Center(
-                child: Text(
-                  '$osmolality',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ],
-    ),
-  ),
-),
-
-
               Form(
                 key: _formKey,
                 child: Column(

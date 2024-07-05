@@ -32,12 +32,8 @@ class _UserInfoPageState extends State<UserInfoPage> {
   final motherNameController = TextEditingController();
   final genderController = TextEditingController();
   final weightController = TextEditingController();
-
-  // Date controller
-  final TextEditingController _dateController = TextEditingController();
-
-  // Form key
-  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _dateController = TextEditingController();// Date controller
+  final _formKey = GlobalKey<FormState>();// Form key
 
   // DOB selection function
   Future<void> selectDate() async {
@@ -68,7 +64,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
 
       // Use the ObjectBox store to put the user object
       final userBox = objectbox.store.box<User>();
-       userBox.put(user); // Use async/await for proper error handling
+       userBox.put(user); 
 
       Navigator.pushReplacement(
         context,

@@ -1,34 +1,58 @@
 import 'package:flutter/material.dart';
 import 'package:nutritrackerapp/components/my_button.dart';
 import 'package:nutritrackerapp/components/add_user_textfield.dart';
+import 'package:nutritrackerapp/calculator/all/all_op.dart';
 
-
-class AllCalcPage extends StatefulWidget {
-  const AllCalcPage({super.key});
+class AllCalcIpPage extends StatefulWidget {
+  const AllCalcIpPage({super.key});
 
   @override
-  State<AllCalcPage> createState() => _AllCalcPageState();
+  State<AllCalcIpPage> createState() => _AllCalcIpPageState();
 }
 
-class _AllCalcPageState extends State<AllCalcPage> {
+class _AllCalcIpPageState extends State<AllCalcIpPage> {
   // Controllers for the patient info
   final weightController = TextEditingController();
-  final fluid_limitController = TextEditingController();
+  final fluidLimitController = TextEditingController();
   final feedController = TextEditingController();
   final lipidController = TextEditingController();
   final AAController = TextEditingController();
   final GDRController = TextEditingController();
-  final Na_3Controller = TextEditingController();
-  final Na_NSController = TextEditingController();
+  final Na3Controller = TextEditingController();
+  final NaNSController = TextEditingController();
   final KController = TextEditingController();
   final CaController = TextEditingController();
   final MVIController = TextEditingController();
   final AbxController = TextEditingController();
-  final A_lineController = TextEditingController();
+  final ALineController = TextEditingController();
   final othersController = TextEditingController();
+  final _formKey = GlobalKey<FormState>(); // Form key
 
-  // Form key
-  final _formKey = GlobalKey<FormState>(); 
+  void allOutput(BuildContext context) {
+    if (_formKey.currentState!.validate()) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => AllCalcOpPage(
+            weight: double.parse(weightController.text),
+            fluidLimit: double.parse(fluidLimitController.text),
+            feed: double.parse(feedController.text),
+            lipid: double.parse(lipidController.text),
+            AA: double.parse(AAController.text),
+            GDR: double.parse(GDRController.text),
+            Na3: double.parse(Na3Controller.text),
+            NaNS: double.parse(NaNSController.text),
+            K: double.parse(KController.text),
+            Ca: double.parse(CaController.text),
+            MVI: double.parse(MVIController.text),
+            Abx: double.parse(AbxController.text),
+            ALine: double.parse(ALineController.text),
+            others: double.parse(othersController.text),
+          ),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -104,11 +128,9 @@ class _AllCalcPageState extends State<AllCalcPage> {
                         return null;
                       },
                     ),
-
                     const SizedBox(height: 20),
-
                     UserTextfield(
-                      controller: fluid_limitController,
+                      controller: fluidLimitController,
                       keyboardType: TextInputType.number,
                       hintText: "fluid limit",
                       obscureText: false,
@@ -120,7 +142,6 @@ class _AllCalcPageState extends State<AllCalcPage> {
                       },
                     ),
                     const SizedBox(height: 20),
-
                     UserTextfield(
                       controller: feedController,
                       keyboardType: TextInputType.number, 
@@ -133,9 +154,7 @@ class _AllCalcPageState extends State<AllCalcPage> {
                         return null;
                       },
                     ),
-                    
                     const SizedBox(height: 20),
-
                     UserTextfield(
                       controller: lipidController,
                       keyboardType: TextInputType.number, 
@@ -148,9 +167,7 @@ class _AllCalcPageState extends State<AllCalcPage> {
                         return null;
                       },
                     ),
-                    
                     const SizedBox(height: 20),
-                    
                     UserTextfield(
                       controller: AAController,
                       keyboardType: TextInputType.number,
@@ -164,7 +181,6 @@ class _AllCalcPageState extends State<AllCalcPage> {
                       },
                     ),
                     const SizedBox(height: 20),
-
                     UserTextfield(
                       controller: GDRController,
                       keyboardType: TextInputType.number,
@@ -177,11 +193,9 @@ class _AllCalcPageState extends State<AllCalcPage> {
                         return null;
                       },
                     ),
-
                     const SizedBox(height: 20),
-
                     UserTextfield(
-                      controller: Na_3Controller, 
+                      controller: Na3Controller, 
                       keyboardType: TextInputType.number,
                       hintText: "Na(3%)", 
                       obscureText: false,
@@ -192,11 +206,9 @@ class _AllCalcPageState extends State<AllCalcPage> {
                         return null;
                       },
                     ),
-                    
                     const SizedBox(height: 20),
-
                     UserTextfield(
-                      controller: Na_NSController,
+                      controller: NaNSController,
                       keyboardType: TextInputType.number, 
                       hintText: "Na(NS)", 
                       obscureText: false,
@@ -207,9 +219,7 @@ class _AllCalcPageState extends State<AllCalcPage> {
                         return null;
                       },
                     ),
-                    
                     const SizedBox(height: 20),
-
                     UserTextfield(
                       controller: KController,
                       keyboardType: TextInputType.number, 
@@ -222,9 +232,7 @@ class _AllCalcPageState extends State<AllCalcPage> {
                         return null;
                       },
                     ),
-                    
                     const SizedBox(height: 20),
-
                     UserTextfield(
                       controller: CaController,
                       keyboardType: TextInputType.number, 
@@ -237,7 +245,6 @@ class _AllCalcPageState extends State<AllCalcPage> {
                         return null;
                       },
                     ),
-                    
                     const SizedBox(height: 20),
                     UserTextfield(
                       controller: MVIController,
@@ -251,9 +258,7 @@ class _AllCalcPageState extends State<AllCalcPage> {
                         return null;
                       },
                     ),
-                    
                     const SizedBox(height: 20),
-
                     UserTextfield(
                       controller: AbxController,
                       keyboardType: TextInputType.number, 
@@ -266,11 +271,9 @@ class _AllCalcPageState extends State<AllCalcPage> {
                         return null;
                       },
                     ),
-                    
                     const SizedBox(height: 20),
-
                     UserTextfield(
-                      controller: A_lineController,
+                      controller: ALineController,
                       keyboardType: TextInputType.number, 
                       hintText: "A line", 
                       obscureText: false,
@@ -281,9 +284,7 @@ class _AllCalcPageState extends State<AllCalcPage> {
                         return null;
                       },
                     ),
-                    
                     const SizedBox(height: 20),
-
                     UserTextfield(
                       controller: othersController,
                       keyboardType: TextInputType.number, 
@@ -296,14 +297,14 @@ class _AllCalcPageState extends State<AllCalcPage> {
                         return null;
                       },
                     ),
-                    
-                    const SizedBox(height: 20),
-
-                    MyButton(
-                      onTap: () {},
-                      text: "Continue",
+                    const SizedBox(height: 25),
+                    GestureDetector(
+                      
+                      child: MyButton(
+                        onTap: () => allOutput(context),
+                        text: "Calculate",
+                      ),
                     ),
-
                     const SizedBox(height: 20),
                   ],
                 ),
