@@ -51,4 +51,5 @@ Ensure you have Flutter SDK installed and configured on your machine.
 Contributions are welcome! If you have ideas for new features, improvements, or find any issues, please open an issue or submit a pull request. For major changes, please discuss them via issue before submitting a pull request.
 
 ## Contact
-For questions or support, please contact at madhuryamishra@gmail.com.
+For questions or support, please contact at medblueinnovations@mgmail.com
+
